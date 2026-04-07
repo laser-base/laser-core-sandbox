@@ -50,6 +50,10 @@ print(lc.__version__)
 
 Documentation can be found [here](https://laser.idmod.org/laser-generic/).
 
+### CI/CD
+
+See [RECOMMENDATIONS.md](RECOMMENDATIONS.md) for the recommended GitHub Actions workflow setup, including version bumping and PyPI release.
+
 ### Development
 
 1. clone the `laser-core` repository with
