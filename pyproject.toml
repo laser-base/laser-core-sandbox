@@ -14,6 +14,7 @@ maintainers = [
 description = "Core functionality for the Light Agent Spatial modeling for ERadication toolkit (LASER)."
 readme = "README.rst"
 license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.9,<3.15"
 keywords = ["spatial modeling", "disease eradication", "agent-based modeling"]
 classifiers = [
@@ -69,8 +70,43 @@ Documentation = "https://laser-base.github.io/laser-generic/"
 Changelog = "https://github.com/laser-base/laser-core/blob/main/CHANGELOG.rst"
 
 [build-system]
-requires = ["setuptools>=76.0"]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build>=0.11.7,<0.12"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "laser.core"
+source-include = [
+    "AUTHORS.rst",
+    "CHANGELOG.rst",
+    "CONTRIBUTING.rst",
+    "*.md",
+    "ci/**",
+    "docs/**",
+    "examples/**",
+    "tests/**",
+]
+source-exclude = [
+    ".bumpversion.cfg",
+    ".cookiecutterrc",
+    ".coveragerc",
+    ".editorconfig",
+    ".github/workflows/github-actions.yml",
+    ".pre-commit-config.yaml",
+    ".readthedocs.yml",
+    "notes.md",
+    "pytest.ini",
+    "tox.ini",
+    "uv.lock",
+    "*.so",
+    "*.dylib",
+    ".DS_Store",
+]
+wheel-exclude = [
+    "ci/**",
+    "docs/**",
+    "examples/**",
+    "tests/**",
+]
 
 [tool.ruff.per-file-ignores]
 "ci/*" = ["S"]
@@ -126,16 +162,6 @@ target-version = ["py39"]
 exclude_also = [
     "if __name__ == .__main__.:",
     ]
-
-[tool.setuptools]
-package-dir = {"" = "src"}
-
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.setuptools.package-data]
-"laser.core" = ["*.c"]
-"tests" = ["data/*.csv"]
 
 [tool.bumpversion]
 current_version = "1.1.1"
