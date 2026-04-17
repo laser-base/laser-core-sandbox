@@ -66,16 +66,8 @@ jobs:
       - name: Install UV
         uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57 # v8.0.0
 
-      - name: Set up Python
-        run: |
-          uv venv --python 3.12 .venv
-          source .venv/bin/activate
-
-      - name: Install bump-my-version
-        run: pip install bump-my-version
-
       - name: Bump version
-        run: bump-my-version bump ${{ github.event.inputs.version_type }}
+        run: uvx --python 3.12 bump-my-version bump ${{ github.event.inputs.version_type }}
 
       - name: Push
         run: |
